@@ -1,5 +1,7 @@
 # Kirikiri for Nintendo Switch / ニンテンドースイッチ用の吉里吉里
 
+![Kirikiri icon](icon.jpg)
+
 This repository contains a Kirikiri-compatible (often mistranslated as Yoshiri Yoshizato) engine ported to the Nintendo Switch. Code from [Kirikiri2 / 吉里吉里2](https://sv.kikyou.info/trac/kirikiri), [KirikiriZ / 吉里吉里Z](https://github.com/krkrz/krkrz), [Kirikiroid2](https://github.com/zeas2/Kirikiroid2), and [mkrkr](https://github.com/zhangguof/mkrkr) was used for this project.
 
 ## Building
