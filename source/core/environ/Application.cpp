@@ -93,9 +93,6 @@ tjs_string ExePath() {
 	static tjs_string exepath(TJS_W(""));
 	if (exepath.empty()) {
 		exepath = tjs_string(_wargv[0]);
-		if( TJS_strstr(exepath.c_str(), TJS_W(".nro")) == nullptr ) {
-			exepath += TJS_W("/krkrs.nro");
-		}
 	}
 	return exepath;
 }

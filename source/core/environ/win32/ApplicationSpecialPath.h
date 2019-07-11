@@ -57,11 +57,15 @@ public:
 		return ChangeFileExt(exename, TJS_W(".cf"));
 	}
 	static tjs_string GetDataPathDirectory( tjs_string datapath, const tjs_string& exename ) {
-		// if (datapath != TJS_W("")) return datapath;
-		// ttstr nativeDataPath = ttstr(TVPGetAppPath());
-		// TVPGetLocalName(nativeDataPath);
-		// nativeDataPath += "/savedata/";
-		return tjs_string(TJS_W("savedata/"));
+		if (datapath != TJS_W("")) return datapath;
+		ttstr nativeDataPath = ttstr(TVPGetAppPath());
+		TVPGetLocalName(nativeDataPath);
+		nativeDataPath += "/savedata/";
+		// static tjs_string nativeDataPath(TJS_W(""));
+		// if (nativeDataPath.empty()) {
+		// 	nativeDataPath = tjs_string(TVPGetAppPath() + "/savedata/");
+		// }
+		return nativeDataPath.AsStdString();
 #if 0
 		if(datapath == TJS_W("") ) datapath = tjs_string(L"$(exepath)\\savedata");
 

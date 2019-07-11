@@ -811,7 +811,23 @@ bool sdlProcessEventsForFrames(int frames) {
 	}
 }
 
+extern int __system_argc;
+extern char** __system_argv;
+
 int main(int argc, char **argv) {
+	_argc = __system_argc;
+	_wargv = new tjs_char*[__system_argc];
+
+	for (int i = 0; i < __system_argc; i += 1) {
+		const tjs_char* warg;
+		warg = ttstr(__system_argv[i]).c_str();
+
+		tjs_char* warg_copy = new tjs_char[strlen(__system_argv[i]) + 1];
+		warg_copy[strlen(__system_argv[i])] = TJS_W('\0');
+		memcpy(warg_copy, warg, sizeof(tjs_char) * (strlen(__system_argv[i])));
+		_wargv[i] = warg_copy;
+	}
+
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_GameController *controller = NULL;
 	for (int i = 0; i < SDL_NumJoysticks(); ++i) {
@@ -830,21 +846,6 @@ int main(int argc, char **argv) {
 	window = SDL_CreateWindow("Kirikiri for Switch", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, 0);
 	renderer = SDL_CreateRenderer(window, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
-
-	tjs_char** wargv = reinterpret_cast<tjs_char**>(malloc(sizeof(tjs_char*) * argc));
-
-	for (int i = 0; i < argc; i += 1) {
-		const tjs_char* warg;
-//		if (!i)
-//			warg = ttstr(realpath(argv[i], NULL)).c_str();
-//		else
-			warg = ttstr(argv[i]).c_str();
-		tjs_char* warg_copy = reinterpret_cast<tjs_char*>(malloc(sizeof(tjs_char) * (strlen(argv[i]) + 1)));
-		memcpy(warg_copy, warg, sizeof(tjs_char) * (strlen(argv[i]) + 1));
-		wargv[i] = warg_copy;
-	}
-	_argc = argc;
-	_wargv = wargv;
 	::Application = new tTVPApplication();
 	::Application->StartApplication( _argc, _wargv );
 

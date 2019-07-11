@@ -1259,7 +1259,6 @@ void TVPBeforeSystemInit()
 		TVPProjectDirSelected = true;
 		TVPProjectDir = TVPNormalizeStorageName(TVPGetAppPath() + "/");
 		TVPSetCurrentDirectory(TVPProjectDir);
-		TVPNativeProjectDir = ttstr(TVPGetAppPath() + "/").AsStdString();
 	}
 	else
 	{
@@ -1267,7 +1266,6 @@ void TVPBeforeSystemInit()
 		TVPProjectDirSelected = true;
 		TVPProjectDir = TVPNormalizeStorageName("romfs:/");
 		TVPSetCurrentDirectory(TVPProjectDir);
-		TVPNativeProjectDir = TJS_W("romfs:/");
 	}
 }
 //---------------------------------------------------------------------------

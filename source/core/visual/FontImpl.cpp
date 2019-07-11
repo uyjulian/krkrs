@@ -215,10 +215,6 @@ void TVPInitFontNames()
 		if (TVPEnumFontsProc(TVPGetAppPath() + "default.ttc")) break;
 		if (TVPEnumFontsProc(TVPGetAppPath() + "default.otf")) break;
 		if (TVPEnumFontsProc(TVPGetAppPath() + "default.otc")) break;
-		if (TVPEnumFontsProc("default.ttf")) break;
-		if (TVPEnumFontsProc("default.ttc")) break;
-		if (TVPEnumFontsProc("default.otf")) break;
-		if (TVPEnumFontsProc("default.otc")) break;
 	} while (false);
     // set default fontface name
 
@@ -237,10 +233,9 @@ void TVPInitFontNames()
 #ifdef __SWITCH__
 		dirlist.emplace_back("romfs:/fonts");
 #endif
-		ttstr dir(TVPGetAppPath() + "/fonts");
+		ttstr dir(TVPGetAppPath() + "fonts");
 		TVPGetLocalName(dir);
 		dirlist.emplace_back(dir);
-		dirlist.emplace_back("fonts");
 #ifdef __APPLE__
 		dirlist.emplace_back("/System/Library/Fonts");
 		dirlist.emplace_back("/Library/Fonts");
