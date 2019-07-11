@@ -282,7 +282,7 @@ void tTVPLogStreamHolder::Open(const tjs_char *mode)
 		{
 			// no log location specified
 			TJS_strcpy(filename, TVPNativeLogLocation);
-			TJS_strcat(filename, TJS_W("\\krkr.console.log"));
+			TJS_strcat(filename, TJS_W("/krkr.console.log"));
 			TVPEnsureDataPathDirectory();
 			Stream.Open( filename, mode );
 			if(!Stream.IsOpen()) OpenFailed = true;
