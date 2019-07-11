@@ -118,7 +118,7 @@ extern size_t TextStream_mbstowcs(tjs_char *pwcs, const tjs_nchar *s, size_t n) 
 */
 
 #ifdef TVP_TEXT_READ_ANSI_MBCS
-static ttstr DefaultReadEncoding = TJS_W("Shift_JIS");
+static ttstr DefaultReadEncoding = TJS_W("");
 #else
 static ttstr DefaultReadEncoding = TJS_W("UTF-8");
 #endif
