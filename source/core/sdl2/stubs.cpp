@@ -811,6 +811,7 @@ bool sdlProcessEventsForFrames(int frames) {
 	}
 }
 
+u32 __nx_applet_exit_mode = 1;
 extern int __system_argc;
 extern char** __system_argv;
 
