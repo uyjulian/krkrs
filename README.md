@@ -10,11 +10,11 @@ After installing the preresiqute libraries using `dkp-pacman`, a simple `make` w
 
 ## RomFS Integration
 
-To integrate the game into one single `nro` file, uncomment line 39 of `Makefile`, place game files in a directory named `romfs`, and build as described in the "Building" section.
+To integrate the game into one single `nro` file, uncomment line 39 of `Makefile`, place game files in a directory named `romfs`, rename all files and folders to lowercase, and build as described in the "Building" section.
 
 ## Project Directory Selection
 
-If `startup.tjs` exists in RomFS, the project directory will be set to `romfs:/`. If the aforementioned condition is not met, the project directory will be set to the current directory.
+If `startup.tjs` exists in RomFS, the project directory and current directory will be set to `romfs:/`. If the aforementioned condition is not met, the project directory will be set to the current directory.
 
 ## License
 

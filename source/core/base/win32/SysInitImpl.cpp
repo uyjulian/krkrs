@@ -1263,6 +1263,7 @@ void TVPBeforeSystemInit()
 	else
 	{
 		fclose(startup_file);
+		chdir("romfs:/");
 		TVPProjectDirSelected = true;
 		TVPProjectDir = TVPNormalizeStorageName("romfs:/");
 		TVPSetCurrentDirectory(TVPProjectDir);
