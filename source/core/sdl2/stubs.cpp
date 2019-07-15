@@ -716,7 +716,7 @@ public:
 								if (event.jbutton.type == SDL_JOYBUTTONDOWN)
 									TVPPostInputEvent(new tTVPOnMouseDownInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbLeft, 0));
 								else {
-									TVPPostInputEvent(new tTVPOnMouseDownInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbLeft, 0));
+									TVPPostInputEvent(new tTVPOnClickInputEvent(TJSNativeInstance, 0, 0));
 									TVPPostInputEvent(new tTVPOnMouseUpInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbLeft, 0));
 								}
 								return;
@@ -724,7 +724,7 @@ public:
 								if (event.jbutton.type == SDL_JOYBUTTONDOWN)
 									TVPPostInputEvent(new tTVPOnMouseDownInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbRight, 0));
 								else {
-									TVPPostInputEvent(new tTVPOnMouseDownInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbRight, 0));
+									TVPPostInputEvent(new tTVPOnClickInputEvent(TJSNativeInstance, 0, 0));
 									TVPPostInputEvent(new tTVPOnMouseUpInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbRight, 0));
 								}
 								return;
@@ -732,7 +732,7 @@ public:
 								if (event.jbutton.type == SDL_JOYBUTTONDOWN)
 									TVPPostInputEvent(new tTVPOnMouseDownInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbRight, 0));
 								else {
-									TVPPostInputEvent(new tTVPOnMouseDownInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbRight, 0));
+									TVPPostInputEvent(new tTVPOnClickInputEvent(TJSNativeInstance, 0, 0));
 									TVPPostInputEvent(new tTVPOnMouseUpInputEvent(TJSNativeInstance, 0, 0, tTVPMouseButton::mbRight, 0));
 								}
 								return;
