@@ -800,10 +800,7 @@ extern void TVPGetAllFontList(std::vector<ttstr>& list);
 void tTVPNativeBaseBitmap::GetFontList(tjs_uint32 flags, std::vector<ttstr> &list)
 {
 	ApplyFont();
-	std::vector<ttstr> ansilist;
-	TVPGetAllFontList(ansilist);
-	for(std::vector<ttstr>::iterator i = ansilist.begin(); i != ansilist.end(); i++)
-		list.push_back(*i);
+	TVPFontSystem->GetFontList( list, flags, GetFont() );
 }
 //---------------------------------------------------------------------------
 void tTVPNativeBaseBitmap::MapPrerenderedFont(const ttstr & storage)

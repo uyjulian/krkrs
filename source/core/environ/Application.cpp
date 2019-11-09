@@ -47,7 +47,6 @@
 #include "EventIntf.h"
 #include "StorageIntf.h"
 #include "TVPColor.h"
-#include "FontImpl.h"
 #include <unistd.h>
 
 #if 0
@@ -372,7 +371,6 @@ bool tTVPApplication::StartApplication( int argc, tjs_char* argv[] ) {
 
 		// TVPInitializeBaseSystems
 		TVPInitializeBaseSystems();
-		TVPInitFontNames();
 
 		Initialize();
 
