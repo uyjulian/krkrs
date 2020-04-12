@@ -30,6 +30,10 @@ include $(DEVKITPRO)/libnx/switch_rules
 #     - icon.jpg
 #     - <libnx folder>/default_icon.jpg
 #---------------------------------------------------------------------------------
+APP_TITLE := Kirikiri for Nintendo Switch
+APP_AUTHOR := W.Dee
+APP_VERSION := v1.1.0
+
 TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=  source source/core source/core/movie source/core/movie/ffmpeg source/core/extension source/core/msg source/core/msg/win32 source/core/tjs2 source/core/utils source/core/utils/encoding source/core/utils/win32 source/core/environ source/core/environ/android source/core/environ/win32 source/core/visual source/core/visual/gl source/core/visual/win32 source/core/sdl2 source/core/sound source/core/sound/win32 source/core/base source/core/base/android source/core/base/win32 source/plugins source/plugins/ncbind
