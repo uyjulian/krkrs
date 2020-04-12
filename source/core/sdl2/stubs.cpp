@@ -844,6 +844,9 @@ int main(int argc, char **argv) {
     socketInitializeDefault();
     nxlinkStdio();
 
+    SDL_SetHint("SDL_HINT_TOUCH_MOUSE_EVENTS", "0");
+    SDL_SetHint("SDL_HINT_MOUSE_TOUCH_EVENTS", "0");
+
 	window = SDL_CreateWindow("Kirikiri for Switch", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, 0);
 	renderer = SDL_CreateRenderer(window, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
