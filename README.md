@@ -1,35 +1,35 @@
-# Kirikiri for Nintendo Switch
+# ニンテンドースイッチ用の吉里吉里
 
-![Kirikiri icon](icon.jpg)
+![吉里吉里アイコン](icon.jpg)
 
-This repository contains a Kirikiri-compatible (often mistranslated as Yoshiri Yoshizato) core ported to the Nintendo Switch.  
-Kirikiri is almost always exclusively used with [Kirikiri Adventure Game 3 (KAG3)](https://github.com/krkrz/kag3) visual novel engine 
-(or its derivitives), but it can also be used for desktop applications and utilities (similar to the use case of [Electron](https://www.electronjs.org/)), such as the [E-mote editor](https://emote.mtwo.co.jp/).  
+このリポジトリには、ニンテンドースイッチに移植された吉里吉里互換のコアが含まれています。  
+吉里吉里は、ほとんど常に排他的に[Kirikiri Adventure Game 3 （KAG3）](https://github.com/krkrz/kag3)ビジュアルノベルエンジン（またはその派生物）で使用されますが、[E-mote](https://emote.mtwo.co.jp/)などのデスクトップアプリケーションおよびユーティリティ（[Electron](https://www.electronjs.org/)の使用例と同様）にも使用できます。
 
-## Building
+## 建物
 
-After installing the prerequisite libraries using `dkp-pacman`, a simple `make` will generate `krkrs.nro`.  
-If you get an "file not found" or "library not found" error while compiling the engine, install the missing library from `dkp-pacman`.
+`dkp-pacman`を使用して前提条件のライブラリをインストールした後、単純な`make`で`krkrs.nro`を生成します。  
+エンジンのコンパイル中に「ファイルが見つかりません」または「ライブラリが見つかりません」エラーが発生した場合は、 `dkp-pacman`から不足しているライブラリをインストールしてください。
 
-## RomFS Integration
+## RomFS統合
 
-To integrate the game into one single `nro` file, do the following:
-* Uncomment line 43 of `Makefile`
-* Place game files in a directory named `romfs`
-* Rename all files and folders to lowercase
-* Build as described in the "Building" section
+ゲームを1つの`nro`ファイルに統合するには、次のようにします。
+* 「Makefile」の43行目をコメント解除します
+* ゲームファイルを「romfs」という名前のディレクトリに配置します
+* すべてのファイルとフォルダの名前を小文字に変更します
+* 「ビルド」セクションの説明に従ってビルドします。
 
-Please note that if files and folder names are not converted to lowercase, you will get errors when the file is not found.  
-Also, please note that if the file name is non-7-bit safe, the file can not be accessed. In that case, please use an XP3 archive.
+ファイルとフォルダ名が小文字に変換されていない場合、ファイルが見つからないときにエラーが発生することに注意してください。  
+また、ファイル名が7ビットセーフでない場合、ファイルにアクセスできませんのでご注意ください。 その場合は、XP3アーカイブをご利用ください。
 
-## Project Directory Selection
+## プロジェクトディレクトリの選択
 
-If `startup.tjs` exists in RomFS, the project directory and current directory will be set to `romfs:/`. If the aforementioned condition is not met, the project directory will be set to the current directory (usually the same directory as where `krkrs.nro` is located).
+RomFSに`startup.tjs`が存在する場合、プロジェクトディレクトリと現在のディレクトリは`romfs:/`に設定されます。  
+上記の条件が満たされない場合、プロジェクトディレクトリは現在のディレクトリに設定されます（通常、 `krkrs.nro`があるディレクトリと同じディレクトリ）。  
 
-## Plugins
+## プラグイン
 
-External plugin usage is not supported at this time.  
-The following internal "plugins" are supported:
+現在、外部プラグインの使用はサポートされていません。  
+次の内部「プラグイン」がサポートされています。
 * [csvParser](https://github.com/wtnbgo/csvParser)
 * dirlist
 * [fftgraph](https://github.com/krkrz/fftgraph)
@@ -40,50 +40,50 @@ The following internal "plugins" are supported:
 * [win32dialog](https://github.com/wtnbgo/win32dialog)
 * wutcwf
 
-In order to use the functionality of the internal plugins, `Plugins.link` needs to be called with the name of the plugin. Example:
+内部プラグインの機能を使用するには、プラグインの名前で `Plugins.link`を呼び出す必要があります。 例：
 ```js
 Plugins.link("csvParser.dll");
 ```
-After that is done, the functionality of the plugin can be used:
+その後、プラグインの機能を使用できます。
 ```js
 var x = new CSVParser();
 ```
 
-## Fonts
+## 書体
 
-In order to use a font, it must be added using `Font.addFont`.
-Example usage:
+フォントを使用するには、 `Font.addFont`を使用して追加する必要があります。
+使用例：
 ```js
 Font.addFont("fonts/meiryo.ttf");
 ```
 
-## Text File Encoding
+## テキストファイルのエンコード
 
-UTF-16LE encoding with BOM is preferred, as it can be streamed in without any re-encoding or decompression.  
-Here are the rules for encoding detection:  
-If the first bytes are 0xfe 0xfe, the file will be decoded/deobfuscated and the encoding detection will continue.  
-If the first bytes are 0xff 0xfe (UTF-16LE BOM), the file is loaded as UTF-16LE.  
-If the first bytes are 0xef 0xbb 0xbf (UTF-8 BOM), the file is loaded as UTF-8.  
-Otherwise, the encoding is set using the `-readencoding` command line option.  
-If TVP_TEXT_READ_ANSI_MBCS is defined, the default value will be Shift_JIS.  
-Otherwise, it will be UTF-8. Valid options are: `""`, `"UTF-8"`, `"Shift_JIS"`, `"GBK"`.  
-If the option is `""`, the decoding will be attempted in the following order: `"Shift_JIS"`, `"UTF-8"`, `"GBK"`.  
-If decoding fails, `TJSNarrowToWideConversionError` will be thrown.  
+BOMを使用したUTF-16LEエンコードが推奨されます。これは、再エンコードや解凍を行わなくてもストリーミングできるためです。  
+エンコード検出のルールは次のとおりです。  
+最初のバイトが0xfe 0xfeの場合、ファイルはデコード/解読され、エンコードの検出が続行されます。  
+最初のバイトが0xff 0xfe（UTF-16LE BOM）の場合、ファイルはUTF-16LEとしてロードされます。  
+最初のバイトが0xef 0xbb 0xbf（UTF-8 BOM）の場合、ファイルはUTF-8としてロードされます。  
+それ以外の場合、エンコーディングは `-readencoding`コマンドラインオプションを使用して設定されます。  
+TVP_TEXT_READ_ANSI_MBCSが定義されている場合、デフォルト値はShift_JISになります。  
+それ以外の場合は、UTF-8になります。 有効なオプションは、 `""`、 `"UTF-8"`、 `"Shift_JIS"`、 `"GBK"`です。  
+オプションが `""`の場合、デコードは `"Shift_JIS"`、 `"UTF-8"`、 `"GBK"`の順に試行されます。  
+デコードに失敗すると、 `TJSNarrowToWideConversionError`がスローされます。  
 
-## Archive support
+## アーカイブのサポート
 
-The only archives supported using this engine are unencrypted XP3 archive.  
-The archive can reside on the SD card filesystem or in RomFS.  
-Using an archive can alleviate the issue with file name encoding and file name case.  
-The archive can be accessed using the archive delimiter (default is `>`, and can be set with `-arcdelim` command line argument).  
-Example usage:  
+このエンジンを使用してサポートされるアーカイブは、暗号化されていないXP3アーカイブのみです。  
+アーカイブは、SDカードファイルシステムまたはRomFSに配置できます。  
+アーカイブを使用すると、ファイル名のエンコーディングとファイル名の大文字と小文字の問題を軽減できます。  
+アーカイブには、アーカイブ区切り文字を使用してアクセスできます（デフォルトは`>`で、`-arcdelim`コマンドライン引数で設定できます）。  
+使用例：  
 ```js
 Scripts.execStorage("archive.xp3>file.tjs");
 ```
 
-## 3rd Party Project Usage
+## サードパーティプロジェクトの使用
 
-Code from the following projects was used:
+次のプロジェクトのコードが使用されました：
 * [libnx](https://github.com/switchbrew/libnx)
 * [ffmpeg](http://ffmpeg.org/)
 * [zlib](https://www.zlib.net/)
@@ -99,13 +99,13 @@ Code from the following projects was used:
 * [Oniguruma](https://github.com/kkos/oniguruma)
 * [bzip2](https://www.sourceware.org/bzip2/)
 * [A C-program for MT19937](http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/VERSIONS/C-LANG/mt19937-64.c)
-* [Kirikiri 2](https://github.com/krkrz/krkr2)
-* [Kirikiri Z](http://krkrz.github.io/)
+* [吉里吉里2](https://github.com/krkrz/krkr2)
+* [吉里吉里Z](http://krkrz.github.io/)
 * [Kirikiroid2](https://github.com/zeas2/Kirikiroid2)
 * [mkrkr](https://github.com/zhangguof/mkrkr)
 * [Kirikiri SDL2](https://github.com/uyjulian/krkrsdl2)
 
-## License
+## ライセンス
 
-This project is licensed under a modified BSD license. Please read the `LICENSE` file for more information.  
-Multiple third party projects are used. Please read the `LICENSE.3rdparty` file for more information.
+このプロジェクトは、修正されたBSDライセンスの下でライセンスされています。 詳しくは `LICENSE`ファイルを読んでください。  
+複数のサードパーティプロジェクトが使用されています。 詳しくは `LICENSE.3rdparty`ファイルをお読みください。  
