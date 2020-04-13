@@ -2,6 +2,8 @@
 
 ![吉里吉里アイコン](icon.jpg)
 
+Please read [README.en_US.md](https://github.com/uyjulian/krkrs/blob/master/README.en_US.md) for English documentation.  
+
 このリポジトリには、ニンテンドースイッチに移植された吉里吉里互換のコアが含まれています。  
 吉里吉里は、ほとんど常に排他的に[Kirikiri Adventure Game 3 （KAG3）](https://github.com/krkrz/kag3)ビジュアルノベルエンジン（またはその派生物）で使用されますが、[E-mote](https://emote.mtwo.co.jp/)などのデスクトップアプリケーションおよびユーティリティ（[Electron](https://www.electronjs.org/)の使用例と同様）にも使用できます。
 
