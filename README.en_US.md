@@ -8,7 +8,7 @@ Kirikiri is almost always exclusively used with [Kirikiri Adventure Game 3 (KAG3
 
 ## Building
 
-After installing the prerequisite libraries using `dkp-pacman`, a simple `make` will generate `krkrs.nro`.  
+After installing the prerequisite libraries using `dkp-pacman`, a simple `mkdir b && cd b && cmake .. && make` will generate `krkrs.nro`.  
 If you get an "file not found" or "library not found" error while compiling the engine, install the missing library from `dkp-pacman`.
 
 ## RomFS Integration

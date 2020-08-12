@@ -9,7 +9,7 @@ Please read [README.en_US.md](https://github.com/uyjulian/krkrs/blob/master/READ
 
 ## 建物
 
-`dkp-pacman`を使用して前提条件のライブラリをインストールした後、単純な`make`で`krkrs.nro`を生成します。  
+`dkp-pacman`を使用して前提条件のライブラリをインストールした後、単純な`mkdir b && cd b && cmake .. && make`で`krkrs.nro`を生成します。  
 エンジンのコンパイル中に「ファイルが見つかりません」または「ライブラリが見つかりません」エラーが発生した場合は、 `dkp-pacman`から不足しているライブラリをインストールしてください。
 
 ## RomFS統合
