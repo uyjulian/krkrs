@@ -148,7 +148,7 @@ public:
 			// 	//anotherWin->setVisible(true);
 			// }
 			_currentWindowLayer = _lastWindowLayer;
-			SDL_SetWindowSize(window, _currentWindowLayer->curWindowW, _currentWindowLayer->curWindowH);
+			// SDL_SetWindowSize(window, _currentWindowLayer->curWindowW, _currentWindowLayer->curWindowH);
 		}
 		SDL_DestroyTexture(framebuffer);
 		framebuffer = NULL;
@@ -275,7 +275,7 @@ public:
 		//int h;
 		//SDL_GetWindowSize(window, NULL, &h);
 		curWindowW = w;
-		SDL_SetWindowSize(window, curWindowW, curWindowH);
+		//SDL_SetWindowSize(window, curWindowW, curWindowH);
 		if (framebuffer) {
 			SDL_DestroyTexture(framebuffer);
 			framebuffer = NULL;
@@ -286,7 +286,7 @@ public:
 		//int w;
 		//SDL_GetWindowSize(window, &w, NULL);
 		curWindowH = h;
-		SDL_SetWindowSize(window, curWindowW, curWindowH);
+		//SDL_SetWindowSize(window, curWindowW, curWindowH);
 		if (framebuffer) {
 			SDL_DestroyTexture(framebuffer);
 			framebuffer = NULL;
@@ -296,7 +296,7 @@ public:
 	virtual void SetSize(tjs_int w, tjs_int h) override {
 		curWindowW = w;
 		curWindowH = h;
-		SDL_SetWindowSize(window, w, h);
+		//SDL_SetWindowSize(window, w, h);
 		if (framebuffer) {
 			SDL_DestroyTexture(framebuffer);
 			framebuffer = NULL;
@@ -331,13 +331,8 @@ public:
 		// SDL_LockTexture(framebuffer, NULL, NULL, NULL);
 		SDL_UpdateTexture(framebuffer, NULL, tex->GetPixelData(), tex->GetPitch());
 		// SDL_UnlockTexture(framebuffer);
-		SDL_Rect destR;
-		destR.x = 0;
-		destR.y = 0;
-		destR.w = curWindowW;
-		destR.h = curWindowH;
 		SDL_RenderClear(renderer);
-		SDL_RenderCopy(renderer, framebuffer, NULL, &destR);
+		SDL_RenderCopy(renderer, framebuffer, NULL, NULL);
 		SDL_RenderPresent(renderer);
 		hasDrawn = true;
 	}
