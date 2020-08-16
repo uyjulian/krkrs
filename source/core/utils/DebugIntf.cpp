@@ -383,7 +383,7 @@ void tTVPLogStreamHolder::Log(const ttstr & text)
 //---------------------------------------------------------------------------
 void TVPAddLog(const ttstr &line, bool appendtoimportant)
 {
-#if 0
+#if 1
 	// add a line to the log.
 	// exceeded lines over TVPLogMaxLines are eliminated.
 	// this function is not thread-safe ...
@@ -445,8 +445,10 @@ void TVPAddLog(const ttstr &line, bool appendtoimportant)
 
 	if(TVPLoggingToFile) TVPLogStreamHolder.Log(buf);
 #endif
+#if 0
 	Application->PrintConsole( line.c_str(), appendtoimportant );
 	Application->PrintConsole( "\n", appendtoimportant );
+#endif
 }
 //---------------------------------------------------------------------------
 void TVPAddLog(const ttstr &line)
@@ -589,8 +591,8 @@ void TVPSetLogLocation(const ttstr &loc)
 	else
 	{
 		TJS_strcpy(TVPNativeLogLocation, native.AsStdString().c_str());
-		if(TVPNativeLogLocation[TJS_strlen(TVPNativeLogLocation)-1] != TJS_W('\\'))
-			TJS_strcat(TVPNativeLogLocation, TJS_W("\\"));
+		if(TVPNativeLogLocation[TJS_strlen(TVPNativeLogLocation)-1] != TJS_W('/'))
+			TJS_strcat(TVPNativeLogLocation, TJS_W("/"));
 	}
 
 	TVPLogStreamHolder.Reopen();
