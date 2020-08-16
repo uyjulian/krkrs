@@ -854,6 +854,7 @@ int main(int argc, char **argv) {
     short timePerFrame = 16; // miliseconds
     
 	while (sdlProcessEvents()) {
+#if 0
 		if (!startTime) {
             startTime = SDL_GetTicks(); 
         } else {
@@ -866,6 +867,7 @@ int main(int argc, char **argv) {
         
         startTime = endTime;
         endTime = SDL_GetTicks();
+#endif
 	}
 	SDL_Quit();
 	return 0;
