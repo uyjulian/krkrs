@@ -15,6 +15,10 @@ set(SWITCH_APP_NAME "Kirikiri for Nintendo Switch")
 set(SWITCH_AUTHOR   "W.Dee")
 set(SWITCH_VERSION  "v1.1.0")
 
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE RelWithDebInfo)
+endif()
+
 set(C_FLAGS
     -DTVP_ARCHIVE_ENABLE_XP3
     -DTVP_AUDIO_ENABLE_FFMPEG
@@ -34,6 +38,10 @@ set(C_FLAGS
 set(CXX_FLAGS ${C_FLAGS}
     -fno-delete-null-pointer-checks
     -fpermissive
+)
+
+set(OPTIMIZATION_FLAGS
+    -Ofast
 )
 
 set(INCLUDES
@@ -270,6 +278,8 @@ target_link_libraries(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDES})
 target_compile_options(${PROJECT_NAME} PUBLIC $<$<COMPILE_LANGUAGE:C>:${C_FLAGS}>)
 target_compile_options(${PROJECT_NAME} PUBLIC $<$<COMPILE_LANGUAGE:CXX>:${CXX_FLAGS}>)
+target_compile_options(${PROJECT_NAME} PUBLIC $<$<CONFIG:RELEASE>:${OPTIMIZATION_FLAGS}>)
+target_compile_options(${PROJECT_NAME} PUBLIC $<$<CONFIG:RELWITHDEBINFO>:${OPTIMIZATION_FLAGS}>)
 
 add_custom_target(${PROJECT_NAME}.nacp
     COMMAND ${DEVKITPRO}/tools/bin/nacptool
