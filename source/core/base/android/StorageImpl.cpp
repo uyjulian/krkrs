@@ -689,11 +689,11 @@ tTVPLocalFileStream::tTVPLocalFileStream(const ttstr &origname,
 	}
 
 	tjs_int trycount = 0;
-	// std::string filename;
-	// TVPUtf16ToUtf8( filename, localname.AsStdString() );
+	std::string filename;
+	TVPUtf16ToUtf8( filename, localname.AsStdString() );
 
 retry:
-	Handle = fopen( localname.AsNarrowStdString().c_str(), mode );
+	Handle = fopen( filename.c_str(), mode );
 	if(Handle == nullptr)
 	{
 		if(trycount == 0 && access == TJS_BS_WRITE)
