@@ -1095,7 +1095,7 @@ const tjs_char *TVPGetDefaultFontName() {
 	if( IsInitDefalutFontName ) {
 		return TVPDefaultFontNameX.c_str();
 	}
-	TVPDefaultFontNameX = TJS_W("Meiryo");
+	TVPDefaultFontNameX = TJS_W("Noto Sans CJK JP");
 	IsInitDefalutFontName =  true;
 
 	// コマンドラインで指定がある場合、そのフォントを使用する
@@ -1105,7 +1105,7 @@ const tjs_char *TVPGetDefaultFontName() {
 		TVPDefaultFontNameX = str;
 	} else {
 		tjs_string face;
-		std::vector<tjs_string> facenames{tjs_string(TJS_W("Meiryo"))};
+		std::vector<tjs_string> facenames{tjs_string(TJS_W("Noto Sans CJK JP"))};
 		if( SelectFont( facenames, face ) ) {
 			TVPDefaultFontNameX = face;
 		}
@@ -1116,11 +1116,14 @@ void TVPSetDefaultFontName( const tjs_char * name ) {
 	TVPDefaultFontNameX = name;
 }
 const ttstr &TVPGetDefaultFaceNames() {
+	static ttstr default_facenames = "Noto Sans,MotoyaLMaru,Roboto";
+#if 0
 	if( !TVPDefaultFaceNames.IsEmpty() ) {
 		return TVPDefaultFaceNames;
 	} else {
 		TVPDefaultFaceNames = ttstr( TVPGetDefaultFontName() );
-		TVPDefaultFaceNames += ttstr(TJS_W(",Meiryo"));
 		return TVPDefaultFaceNames;
 	}
+#endif
+	return default_facenames;
 }
